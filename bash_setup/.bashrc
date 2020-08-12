@@ -6,10 +6,14 @@
 #  Sections:
 #  1.  TODO... 
 #       
+#
+#  ---------------------------------------------------------------------------
 
 
 
-FILES=$HOME/dotfiles/bash_profile_scripts/*
+FILES=$HOME/dotfiles/bash_setup/bash_scripts/*
+
+
 for file in $FILES
 do
   source $file
