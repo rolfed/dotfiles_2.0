@@ -9,13 +9,20 @@
 #
 #  ---------------------------------------------------------------------------
 
+#!/bin/bash
 
 
 FILES=$HOME/dotfiles/bash_setup/bash_scripts/*
 
 
-for file in $FILES
-do
-  source $file
-done
+
+source_files() {
+	for file in $1
+		do
+  		source $file
+		done
+}
+
+source_files $FILES
+
 echo 'Bash profile updated!'
