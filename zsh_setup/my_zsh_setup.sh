@@ -4,9 +4,14 @@
 #
 #
 #  Sections:
-#  1.  TODO...
+#  1. Terminal - make terminal better (remapping defaults and adding fucntionality)
+#     config/1_terminal.sh/
 #
+#  2. Environment Configuration
+#     config/2_env.sh
 #
+#  3. Network Configuration
+#     config/3_network.sh
 #  ---------------------------------------------------------------------------
 
 #!/bin/bash
@@ -21,9 +26,5 @@ source_files() {
   echo "Loaded my zsh config"
 }
 
+# If config files dir is not empty run source files
 [ "$(ls -A $ZSH_CONFIG_FILES_DIR)" ] && source_files $ZSH_CONFIG_FILES_DIR || echo "Empty"
-
-
-
-# [ "$(ls -A "$FILES)" ] && source_files $FILES || echo "\n-- My ZSH Setup configuration is broken --\n"
-
