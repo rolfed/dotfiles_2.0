@@ -35,17 +35,9 @@ nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
 " Use arrows to navigate tabs
-map <C-t><up> :tabr<cr>
-map <C-t><down> :tabl<cr>
-map <C-t><left> :tabp<cr>
-map <C-t><right> :tabn<cr>
+map <leader> } :tabn
+map <leader> { :tabp 
 
 " Window split
 set splitbelow
 set splitright
-
-" Path
-set path+=**
-:set tags=./tags,tags,$HOME
-
-" Create the 'tags' file

@@ -1,0 +1,16 @@
+{
+  "segments": [
+    "root",
+    "username", 
+    "ssh", 
+    "cwd", 
+    "git", 
+    "hg", 
+    "jobs" 
+  ],
+  "cmd" : {
+    "mode" : "plain",
+    "max_depth": 3 
+  },
+  "theme": "default"
+}
