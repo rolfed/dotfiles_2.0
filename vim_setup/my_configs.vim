@@ -41,3 +41,6 @@ map <leader> { :tabp
 " Window split
 set splitbelow
 set splitright
+
+" Set Ctags
+set tags=tags

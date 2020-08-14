@@ -80,11 +80,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='mvim'
-fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -107,4 +107,10 @@ fi
 # Load my Zsh setup 
 MY_ZSH_SETUP=$HOME/.my_zsh_setup.sh
 [[ -f $MY_ZSH_SETUP ]] && source $MY_ZSH_SETUP || echo "$MY_ZSH_SETUP file does not exist" 
+
+# Proxy setup
+# export HTTPS_PROXY=http://proxy.standard.com:8080
+# export HTTP_PROXY=http://proxy.standard.com:8080
+# export http_proxy=http://proxy.standard.com:8080
+# export https_proxy=http://proxy.standard.com:8080
 
