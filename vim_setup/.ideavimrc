@@ -1,0 +1,7 @@
+" Map kj to esc
+inoremap kj <Esc>
+cnoremap kj <Esc> 
+
+" Map <space> to / search and Ctrl-<space> to ? backward search
+map <space> /
+map <c-space> ?
