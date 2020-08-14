@@ -5,13 +5,25 @@
 #
 #  Sections:
 #  1. Terminal - make terminal better (remapping defaults and adding fucntionality)
-#     config/1_terminal.sh/
 #
 #  2. Environment Configuration
-#     config/2_env.sh
 #
 #  3. Network Configuration
-#     config/3_network.sh
+#
+#  4. Process Mgmt
+#
+#  5. Search
+#
+#  6. File and Folder
+#
+#  7. Systems Operation & Information
+#
+#  8. Tools
+#
+#  9. Web Development
+#
+#  10. Notes & Reminder
+#
 #  ---------------------------------------------------------------------------
 
 #!/bin/bash
