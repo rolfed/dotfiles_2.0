@@ -7,7 +7,7 @@ Dotfiles 2.0 is a collection of development configurations.
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 
 ```bash
-pip install foobar
+git clone git@github.com:rolfed/dotfiles_2.0.git
 ```
 
 ## Usage
