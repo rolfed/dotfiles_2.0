@@ -5,7 +5,7 @@ inoremap kj <Esc>
 cnoremap kj <Esc>
 
 "Set Numbers
-set nu nu
+set nu rnu
 set numberwidth=6
 
 "Turn wordwrap off
