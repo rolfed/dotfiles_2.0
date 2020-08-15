@@ -26,6 +26,11 @@ zsh --version
 chsh -s /bin/zsh
 ```
 
+Install oh-my-zsh
+```bash
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
 ## Usage
 
 ```python
