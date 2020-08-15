@@ -7,7 +7,7 @@ Dotfiles 2.0 is a collection of development configurations.
 Clone Dotfiles repository.
 
 ```bash
-git clone git@github.com:rolfed/dotfiles_2.0.git
+cd ~/ && git clone git@github.com:rolfed/dotfiles_2.0.git
 ```
 
 ## Usage
