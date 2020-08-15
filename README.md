@@ -31,6 +31,13 @@ Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
+Install Powerlevel9k
+```bash
+brew tap sambadevi/powerlevel9k
+brew install powerlevel9k
+echo "source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme" >> ~/.zshrc
+```
+
 ## Usage
 
 ```python
