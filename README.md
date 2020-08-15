@@ -10,6 +10,14 @@ Clone Dotfiles repository.
 cd ~/ && git clone git@github.com:rolfed/dotfiles_2.0.git && mv ~/dotfiles_2.0 ~/dotfiles
 ```
 
+Install terminal Iceberg color them
+
+```bash
+1. Open Terminal
+2. Go to Terminal > prefernces OR Command-Comma (,)
+3. Import Iceberg theme 
+```
+
 ## Usage
 
 ```python
