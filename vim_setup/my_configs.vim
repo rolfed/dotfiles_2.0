@@ -68,3 +68,6 @@ let g:multi_cursor_next_key    = '<C-m>'
 let g:multi_cursor_prev_key    = '<C-p>'
 let g:multi_cursor_skip_key    = '<C-x>'
 let g:multi_cursor_quit_key    = '<Esc>'
+
+" Add Neovim-Ruby-Host
+let g:ruby_host_prog = '~/.rbenv/versions/2.7.1/bin/neovim-ruby-host'
