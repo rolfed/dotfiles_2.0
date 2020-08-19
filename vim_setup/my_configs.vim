@@ -71,3 +71,51 @@ let g:multi_cursor_quit_key    = '<Esc>'
 
 " Add Neovim-Ruby-Host
 let g:ruby_host_prog = '~/.rbenv/versions/2.7.1/bin/neovim-ruby-host'
+
+" NerdTree ignore Node Modules
+let g:NERDTreeIgnore = ['node_modules$']
+
+" Open NerdTree in the left
+let g:NERDTreeWinPos = "left"
+
+" Bind Ctrl-n to open nerd tree
+nmap <C-n> :NERDTreeToggle<CR>
+
+" Lightline configuration
+let g:lightline = {
+  \ 'colorscheme': 'seoul256',
+  \ 'active': {
+  \ 'left': [ [ 'mode', 'paste' ],
+  \   [ 'readonly', 'filename' ]],
+  \   },
+  \   'component_function': {
+  \   'filename': 'LightlineFilename'
+  \   },
+  \ }
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
+
+" sync open file with NERDTree
+" " Check if NERDTree is open or active
+function! IsNERDTreeOpen()    
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+  NERDTreeFind
+  wincmd p
+  endif
+endfunction
+
+" Highlight currently open buffer in NERDTree
+" autocmd BufEnter * call SyncTree()
+
+" CtrlP Fuzzy Search ignore git files
+let g:ctrlp_user_command = ['.git', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
