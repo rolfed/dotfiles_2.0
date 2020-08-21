@@ -1,4 +1,32 @@
-" let g:ale_emit_conflict_warnings = 0
+if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+" Color Theme
+
+syntax on
+" onedark.vim override: Don't set a background color when running in a terminal;
+" just use the terminal's background color
+" `gui` is the hex color code used in GUI mode/nvim true-color mode
+" `cterm` is the color code used in 256-color mode
+" `cterm16` is the color code used in 16-color mode
+if (has("autocmd") && !has("gui_running"))
+  augroup colorset
+  autocmd!
+  let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+  autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+  augroup END
+endif
+
+colorscheme onedark
 
 "Map kj to esc
 inoremap kj <Esc>
@@ -42,8 +70,8 @@ set splitright
 set tags+=.tags;$HOME
 nmap <leader><leader> :!ctags -R -f .tags<CR>
 
-" Coc 
 nmap <F2> <Plug>(coc-rename)
+" Coc 
 
 " Coc Config
 let g:coc_global_extensions = [
@@ -53,6 +81,9 @@ let g:coc_global_extensions = [
   \ 'coc-eslint', 
   \ 'coc-prettier', 
   \ 'coc-json', 
+  \ 'coc-tslint',
+  \ 'coc-angular',
+  \ 'coc-sh'
   \]
 " from readme
 " " if hidden is not set, TextEdit might fail.
@@ -61,10 +92,10 @@ set updatetime=300
 
 " Multip Cursor
 let g:multi_cursor_start_word_key  = '<C-m>'
-let g:multi_cursor_select_all_word_key = '<C-l>'
-let g:multi_cursor_start_key   = 'g<C-l>'
-let g:multi_cursor_select_all_key  = 'g<C-l>'
-let g:multi_cursor_next_key    = '<C-m>'
+let g:multi_cursor_select_all_word_key = '<C-w>'
+let g:multi_cursor_start_key   = 'g<C-s>'
+let g:multi_cursor_select_all_key  = 'g<C-w>'
+let g:multi_cursor_next_key    = '<C-n>'
 let g:multi_cursor_prev_key    = '<C-p>'
 let g:multi_cursor_skip_key    = '<C-x>'
 let g:multi_cursor_quit_key    = '<Esc>'
@@ -83,7 +114,7 @@ nmap <C-n> :NERDTreeToggle<CR>
 
 " Lightline configuration
 let g:lightline = {
-  \ 'colorscheme': 'seoul256',
+  \ 'colorscheme': 'onedark',
   \ 'active': {
   \ 'left': [ [ 'mode', 'paste' ],
   \   [ 'readonly', 'filename' ]],
@@ -92,30 +123,6 @@ let g:lightline = {
   \   'filename': 'LightlineFilename'
   \   },
   \ }
-
-function! LightlineFilename()
-  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-  let modified = &modified ? ' +' : ''
-  return filename . modified
-endfunction
-
-" sync open file with NERDTree
-" " Check if NERDTree is open or active
-function! IsNERDTreeOpen()    
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-  NERDTreeFind
-  wincmd p
-  endif
-endfunction
-
-" Highlight currently open buffer in NERDTree
-" autocmd BufEnter * call SyncTree()
 
 " CtrlP Fuzzy Search ignore git files
 let g:ctrlp_user_command = ['.git', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
