@@ -126,3 +126,6 @@ let g:lightline = {
 
 " CtrlP Fuzzy Search ignore git files
 let g:ctrlp_user_command = ['.git', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" Ensure one newline is present a the end of any text sent to Tmux
+g:tslime_ensure_trailing_newlines = 1
