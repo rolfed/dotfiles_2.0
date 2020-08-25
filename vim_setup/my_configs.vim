@@ -127,5 +127,8 @@ let g:lightline = {
 " CtrlP Fuzzy Search ignore git files
 let g:ctrlp_user_command = ['.git', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-" Ensure one newline is present a the end of any text sent to Tmux
-g:tslime_ensure_trailing_newlines = 1
+" Vim Slime Config 
+let g:slime_target = "tmux"
+let g:slime_paste_file = "$HOME/.slime_paste"
+let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
+
