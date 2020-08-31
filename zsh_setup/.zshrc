@@ -8,7 +8,7 @@ export ZSH="/Users/s004057/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -95,8 +95,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
 #
 
 # Pyenv
@@ -108,9 +108,6 @@ fi
 MY_ZSH_SETUP=$HOME/.my_zsh_setup.sh
 [[ -f $MY_ZSH_SETUP ]] && source $MY_ZSH_SETUP || echo "$MY_ZSH_SETUP file does not exist" 
 
-# Proxy setup
-# export HTTPS_PROXY=http://proxy.standard.com:8080
-# export HTTP_PROXY=http://proxy.standard.com:8080
-# export http_proxy=http://proxy.standard.com:8080
-# export https_proxy=http://proxy.standard.com:8080
-
+# Powerlevel 9k Customization
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs vcs vi_mode)
