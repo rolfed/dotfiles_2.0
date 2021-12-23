@@ -2,6 +2,7 @@
 #   TOOLS CONFIG
 #   1. Docker
 #   2. Brew
+#   3. DotNet
 #
 #
 #   -------------------------------
@@ -32,3 +33,8 @@ alias prov="docker-machine create --driver digitalocean --digitalocean-access-to
 #    Brew
 #   -------------------------------------------------------------------
 ctags=/usr/local/bin/ctags
+
+#   -------------------------------------------------------------------
+#   DotNet
+#   -------------------------------------------------------------------
+export DOTNET_ROOT='/usr/local/opt/dotnet/libexec'
