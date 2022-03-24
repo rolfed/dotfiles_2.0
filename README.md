@@ -26,16 +26,26 @@ zsh --version
 chsh -s /bin/zsh
 ```
 
+Link .zshrc
+```bash
+ln -s ~/dotfiles/.zshrc ~/.zshrc
+```
+
 Install oh-my-zsh
 ```bash
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-Install Powerlevel9k
+Install Nerd Fonts
 ```bash
-brew tap sambadevi/powerlevel9k
-brew install powerlevel9k
-echo "source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme" >> ~/.zshrc
+brew tap homebrew/cask-eonts 
+brew install --cask font-hack-nerd-font
+```
+
+Install Powerlevel10k
+```bash
+brew install romkatv/powerlinelevel10k/powerlevel10k
+echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
 ```
 
 ## Usage
