@@ -2,7 +2,7 @@
 
 Dotfiles 2.0 is a collection of development configurations. 
 
-## Installation
+# Terminal Configuration
 
 Clone Dotfiles repository.
 
@@ -30,6 +30,11 @@ Link .zshrc
 ```bash
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 ```
+//TODO
+Copy Config directory to root
+```bash
+cp -r ~/
+```
 
 Install oh-my-zsh
 ```bash
@@ -48,20 +53,23 @@ brew install romkatv/powerlinelevel10k/powerlevel10k
 echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
 ```
 
-## Usage
-
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
+Install Pyenv
+```bash
+brew install pyenv
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Configure Pyenv
+```bash
+echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
 
-Please make sure to update tests as appropriate.
+```
+
+
+# Vim Configuration
+
+Install Ultimate Vim [Configuration](https://github.com/amix/vimrc) 
+
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

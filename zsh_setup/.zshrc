@@ -115,10 +115,6 @@ fi
 MY_ZSH_SETUP=$HOME/.my_zsh_setup.sh
 [[ -f $MY_ZSH_SETUP ]] && source $MY_ZSH_SETUP || echo "$MY_ZSH_SETUP file does not exist" 
 
-# Powerlevel 9k Customization
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs vcs vi_mode)
-
 # Plugins
 plugins=(
     docker 
@@ -128,3 +124,4 @@ source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+

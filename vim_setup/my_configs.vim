@@ -24,3 +24,6 @@ let g:tslime_always_current_window = 1
 let g:tslime_autoset_pane = 1
 
 "" }}}
+
+" Map Ctrl-n to Nerdtree
+map <C-n> :NERDTreeToggle<CR>
