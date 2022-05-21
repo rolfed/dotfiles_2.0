@@ -19,11 +19,7 @@ alias pp='pbpaste | python -m json.tool' # This allows you to copy json to your 
 #   -------------------------------------------------------------------
 #   Docker
 #   -------------------------------------------------------------------
-export DOTOKEN=
-export AWSTOKEN=
-
 export DOTOKEN=$DOTOKEN
-export AWSTOKEN=$AWSTOKEN
 
 alias drm='docker rm `docker ps -a -q`'
 alias drn='docker images | grep none | awk "{ print $3 }" | xargs docker rmi'
@@ -38,3 +34,5 @@ ctags=/usr/local/bin/ctags
 #   DotNet
 #   -------------------------------------------------------------------
 export DOTNET_ROOT='/usr/local/opt/dotnet/libexec'
+# Add .NET Core SDK tools
+export PATH="$PATH:/Users/dannielrolfe/.dotnet/tools"
