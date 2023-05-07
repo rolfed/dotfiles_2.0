@@ -6,10 +6,11 @@
     alias apacheRestart='sudo apachectl graceful'           # apacheRestart:    Restart Apache
     alias editHosts='sudo edit /etc/hosts'                  # editHosts:        Edit /etc/hosts file
     alias herr='tail /var/log/httpd/error_log'              # herr:             Tails HTTP error logs
-    alias apacheLogs="less +F /var/log/apache2/error_log"   # Apachelogs:   Shows apache error logs
+    alias apacheLogs="less +F /var/log/apache2/error_log"   # Apachelogs:       Shows apache error logs
     httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grabs headers from web page
     alias log="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
     alias idea='open -a "`ls -dt /Applications/IntelliJ\ IDEA*|head -1`"'
+    alias pserv='python3 -m http.server'
 
 #   httpDebug:  Download a web page and show info on what took time
 #   -------------------------------------------------------------------

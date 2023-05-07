@@ -23,7 +23,20 @@ let g:tslime_always_current_session = 1
 let g:tslime_always_current_window = 1
 let g:tslime_autoset_pane = 1
 
-"" }}}
-
 " Map Ctrl-n to Nerdtree
 map <C-n> :NERDTreeToggle<CR>
+
+" Map kj to esc
+inoremap kj <Esc>
+cnoremap kj <Esc>
+
+" Add New line without quotes
+set formatoptions-=ro
+ 
+" Extentions
+set NERDTree
+ 
+" 2 Space Tab
+set noexpandtab
+set tabstop=2
+set shiftwidth=2

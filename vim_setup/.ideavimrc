@@ -5,3 +5,19 @@ cnoremap kj <Esc>
 " Map <space> to / search and Ctrl-<space> to ? backward search
 map <space> /
 map <c-space> ?
+
+" turn hybrid line numbers on
+set number relativenumber
+set nu rnu
+
+set formatoptions-=ro
+
+" Map Ctrl-n to Nerdtree
+map <C-n> :NERDTreeToggle<CR>
+
+" Close NERDTree after file select
+let NERDTreeQuitOnOpen=1
+ 
+" Extentions
+set NERDTree
+set surround
