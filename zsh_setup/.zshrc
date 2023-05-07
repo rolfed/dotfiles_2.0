@@ -118,3 +118,9 @@ plugins=(
     docker-compose
 )
 
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
