@@ -111,13 +111,17 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# Load my Zsh setup 
+# Load my Zsh setup
 MY_ZSH_SETUP=$HOME/.my_zsh_setup.sh
-[[ -f $MY_ZSH_SETUP ]] && source $MY_ZSH_SETUP || echo "$MY_ZSH_SETUP file does not exist" 
+[[ -f $MY_ZSH_SETUP ]] && source $MY_ZSH_SETUP || echo "$MY_ZSH_SETUP file does not exist"
+
+# Powerlevel 9k Customization
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs vcs vi_mode)
 
 # Plugins
 plugins=(
-    docker 
+    docker
     docker-compose
 )
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
