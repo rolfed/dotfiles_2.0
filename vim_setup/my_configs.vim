@@ -12,8 +12,11 @@ let g:niji_dark_colours = [
     \ ]
 " }}}
 
+# Remap ESC to kj
+imap kj <Esc>
+
 " Configuration for TSlime
-" tslime {{{
+" tslime {{k
 
 vmap <C-c><C-c> <Plug>SendSelectionToTmux
 nmap <C-c><C-c> <Plug>NormalModeSendToTmux
