@@ -12,4 +12,6 @@ lsp.ensure_installed({
 	'eslint',
 })
 
-lsp.setup()
+lsp.setup({	
+	sign_icons = { }
+})
