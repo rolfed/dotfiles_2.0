@@ -2,7 +2,7 @@
 
 Dotfiles 2.0 is a collection of development configurations. 
 
-## Installation
+# Terminal Configuration
 
 Clone Dotfiles repository.
 
@@ -26,32 +26,50 @@ zsh --version
 chsh -s /bin/zsh
 ```
 
+Link .zshrc
+```bash
+ln -s ~/dotfiles/.zshrc ~/.zshrc
+```
+//TODO
+Copy Config directory to root
+```bash
+cp -r ~/
+```
+
 Install oh-my-zsh
 ```bash
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-Install Powerlevel9k
+Install Nerd Fonts
 ```bash
-brew tap sambadevi/powerlevel9k
-brew install powerlevel9k
-echo "source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme" >> ~/.zshrc
+brew tap homebrew/cask-eonts 
+brew install --cask font-hack-nerd-font
 ```
 
-## Usage
-
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
+Install Powerlevel10k
+```bash
+brew install romkatv/powerlinelevel10k/powerlevel10k
+echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Install Pyenv
+```bash
+brew install pyenv
+```
 
-Please make sure to update tests as appropriate.
+Configure Pyenv
+```bash
+echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
+
+```
+
+
+# Vim Configuration
+
+Install Ultimate Vim [Configuration](https://github.com/amix/vimrc) 
+
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
