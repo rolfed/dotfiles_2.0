@@ -25,7 +25,7 @@ shift + cmd - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 # Modifying Window Size
 
 # maximize a window
-shift + cmd - m : yabai -m window --toggle zoom-fullscreen
+alt + shift + ctrl + cmd - m : yabai -m window --toggle zoom-fullscreen
 
 # balance out tree of windows (resize to occupy same area)
 shift + cmd - e : yabai -m space --balance
