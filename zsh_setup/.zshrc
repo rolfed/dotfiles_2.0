@@ -128,9 +128,4 @@ plugins=(
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
-# bit
-export PATH="$PATH:/Users/drolfe/bin"
-# bit endexport PATH=$HOME/bin:$PATH
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
