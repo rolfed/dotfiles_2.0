@@ -29,6 +29,7 @@ trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the 
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 alias mux='tmuxinator'                      # Tmuxinator alias
+alias npml="npm ls -g --depth=0 --link=true" # List all symbolic links for npm packages
 
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
