@@ -1,5 +1,12 @@
 * Emacs
 
+** Theme
+#+begin_src emacs-lisp
+  (load-theme 'catppuccin :no-confirm)
+  (setq catppucin-flavor 'mocha) ;; or 'latte, 'mochiatto
+  (catppuchin-reload)
+#+end_src
+
 ** Layout
 #+begin_src emacs-lisp
   ;; Disable tool bar
@@ -23,12 +30,22 @@
   ;; Improve scrolling
   (setq scroll-conservatively 100)
 
+  ;; Utilize prettify sybmols
+  (when window-system (global-prettify-symbols-mode t))
+
+  ;; Highlight cursor line
+  (when whindow-system (global-prettify-hl-line-mode))
+
+
 #+end_src
 
 ** Prompt
 #+begin_src emacs-lisp
   ;; Change yes-no prompt to y-or-n
   (defalias 'yes-or-no-p 'y-or-n-p)
+
+  ;; Disable ring
+  (setq ring-bell-function 'ignore)
 #+end_src
 
 * Terminal
