@@ -17,6 +17,13 @@
   :init
   (which-key-mode))
 
+(use-package beacon
+  :ensure t
+  :init
+  (beacon-mode 1))
+
+(require 'org-tempo)
+
 (load-theme 'catppuccin :no-confirm)
 (setq catppuccin-flavor 'latte) ;; or 'latte, 'macchiato, or 'mocha
 (catppuccin-reload)
@@ -27,26 +34,24 @@
 (setq resize-mini-window t)
 (setq inhibit-startup-message t)
 (setq frame-resize-pixelwise t)
+(setq make-backup-file nil)
+(setq auto-save-default nil)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
-
-(global-set-key (kbd "<s-return>") 'ansi-term)
 
 (setq scroll-conservatively 100)
 (setq ring-bell-function 'ignore)
 (when window-system (global-hl-line-mode))
 
-(defvar my-term-shell "/bin/bash")
-(defadvice ansi-term (before force-bash)
-  (interactive (list my-term-shell)))
-(ad-activate 'ansi-term)
+(when window-system (global-prettify-symbols-mode t))
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(catppuccin-theme which-key)))
+ '(package-selected-packages '(beacon catppuccin-theme which-key)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
