@@ -1,4 +1,5 @@
 * Emacs
+
 ** Layout
 #+begin_src emacs-lisp
   ;; Disable tool bar
@@ -23,12 +24,15 @@
   (setq scroll-conservatively 100)
 
 #+end_src
+
 ** Prompt
 #+begin_src emacs-lisp
   ;; Change yes-no prompt to y-or-n
   (defalias 'yes-or-no-p 'y-or-n-p)
 #+end_src
+
 * Terminal
+
 ** Setting default shell to zsh
 #+begin_src emacs-lisp
     (defvar my-term-shell "/bin/zsh")
