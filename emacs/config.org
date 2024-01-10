@@ -3,8 +3,8 @@
 ** Theme
 #+begin_src emacs-lisp
   (load-theme 'catppuccin :no-confirm)
-  (setq catppucin-flavor 'mocha) ;; or 'latte, 'mochiatto
-  (catppuchin-reload)
+  (setq catppuccin-flavor 'mocha) ;; or 'latte, 'mochiatto
+  (catppuccin-reload)
 #+end_src
 
 ** Layout
@@ -34,7 +34,7 @@
   (when window-system (global-prettify-symbols-mode t))
 
   ;; Highlight cursor line
-  (when whindow-system (global-prettify-hl-line-mode))
+  (when window-system (global-hl-line-mode t))
 
 
 #+end_src
