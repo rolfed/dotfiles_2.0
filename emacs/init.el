@@ -24,20 +24,11 @@
 
 (require 'org-tempo)
 
+(org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))
+
 (load-theme 'catppuccin :no-confirm)
 (setq catppuccin-flavor 'latte) ;; or 'latte, 'macchiato, or 'mocha
 (catppuccin-reload)
-
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(setq resize-mini-window t)
-(setq inhibit-startup-message t)
-(setq frame-resize-pixelwise t)
-(setq make-backup-file nil)
-(setq auto-save-default nil)
-
-(defalias 'yes-or-no-p 'y-or-n-p)
 
 (setq scroll-conservatively 100)
 (setq ring-bell-function 'ignore)

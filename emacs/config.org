@@ -1,3 +1,33 @@
+* Emacs
+** Layout
+#+begin_src emacs-lisp
+  ;; Disable tool bar
+  (tool-bar-mode -1)
+
+  ;; Disable menu bar
+  (menu-bar-mode -1)
+
+  ;; Disable scroll bar
+  (scroll-bar-mode -1)
+
+  ;; Disable start up emacs message and go to buffer
+  (setq inhibit-startup-message t)
+
+  ;; Disable backup file
+  (setq make-backup-file nil)
+
+  ;; Disable auto save
+  (setq auto-save-default nil)
+
+  ;; Improve scrolling
+  (setq scroll-conservatively 100)
+
+#+end_src
+** Prompt
+#+begin_src emacs-lisp
+  ;; Change yes-no prompt to y-or-n
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+end_src
 * Terminal
 ** Setting default shell to zsh
 #+begin_src emacs-lisp
@@ -5,5 +35,5 @@
     (defadvice ansi-term (before force-bash)
      (interactive (list my-term-shell)))
   (ad-activate 'ansi-term)
-  (global-set-key (kbd "<s-return>)" 'ansi-term)
+  ;; (global-set-key (kbd "<s-return>)" 'ansi-term)
 #+end_src
