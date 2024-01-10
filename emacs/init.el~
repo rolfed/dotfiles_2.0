@@ -24,12 +24,6 @@
 
 (require 'org-tempo)
 
-;; Disable symbolic link prompt
-(setq vc-follow-symlinks t)
-
-;; Follow symbolic link and edit actual file
-(setq vc-follow-symlinks nil)
-
 (org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))
 
 (custom-set-variables

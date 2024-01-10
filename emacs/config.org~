@@ -46,7 +46,14 @@
 
   ;; Disable ring
   (setq ring-bell-function 'ignore)
-  #+end_src
+
+  ;; Disable symbolic link prompt
+  (setq vc-follow-symlinks t)
+  
+  ;; Follow symbolic link and edit actual file
+  (setq vc-follow-symlinks nil)
+
+#+end_src
 
 * Terminal
 
