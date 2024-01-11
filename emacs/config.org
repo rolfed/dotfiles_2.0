@@ -1,5 +1,4 @@
 * Emacs
-
 ** Theme
 #+begin_src emacs-lisp
   (load-theme 'catppuccin :no-confirm)
@@ -46,15 +45,68 @@
 
   ;; Disable ring
   (setq ring-bell-function 'ignore)
-  #+end_src
+#+end_src
 
 * Terminal
-
 ** Setting default shell to zsh
 #+begin_src emacs-lisp
-    (defvar my-term-shell "/bin/zsh")
-    (defadvice ansi-term (before force-bash)
-     (interactive (list my-term-shell)))
+  (defvar my-term-shell "/bin/zsh")
+  (defadvice ansi-term (before force-bash)
+    (interactive (list my-term-shell)))
   (ad-activate 'ansi-term)
   ;; (global-set-key (kbd "<s-return>)" 'ansi-term)
+#+end_src
+
+* Org
+** Org Bullets
+#+begin_src emacs-lisp
+  (use-package org-bullets
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
+#+end_src
+
+* IDO
+** Enable ido mode
+#+begin_src emacs-lisp
+  (setq ido-enable-flex-matching nil)
+  (setq ido-create-new-buffer 'always)
+  (setq ido-everywhere t)
+  (ido-mode 1)
+#+end_src
+** IDO-Vertical
+#+begin_src emacs-lisp
+  (use-package ido-vertical-mode
+    :ensure t
+    :init
+    (ido-vertical-mode 1))
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+#+end_src
+** SMEX
+#+begin_src emacs-lisp
+  (use-package smex
+    :ensure
+    :init (smex-initialize)
+    :bind
+    ("M-x" . smex))
+#+end_src
+** Switch Buffer
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
+#+end_src
+* Buffer
+** Enable iBuffer
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-x b") 'ibuffer)
+#+end_src
+** Expert
+#+begin_src emacs-lisp
+  (setq ibuffer-expert t)
+#+end_src
+* Avy
+#+begin_src emacs-lisp
+  (use-package avy
+    :ensure
+    :bind
+    ("M-s" . avy-goto-char))
 #+end_src
