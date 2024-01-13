@@ -129,3 +129,5 @@ plugins=(
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[[ -s "/Users/drolfe/.gvm/scripts/gvm" ]] && source "/Users/drolfe/.gvm/scripts/gvm"

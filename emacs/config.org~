@@ -1,5 +1,4 @@
 * Emacs
-
 ** Theme
 #+begin_src emacs-lisp
   (load-theme 'catppuccin :no-confirm)
@@ -104,10 +103,52 @@
 #+begin_src emacs-lisp
   (setq ibuffer-expert t)
 #+end_src
+* Avy
+#+begin_src emacs-lisp
+  (use-package avy
+    :ensure
+    :bind
+    ("M-s" . avy-goto-char))
+#+end_src
+* Config edit/reload
+** Edit
+#+begin_src emacs-lisp
+  (defun config-visit ()
+    (interactive)
+    (find-file "~/.emacs.d/config.org"))
+  (global-set-key (kbd "C-c e") 'config-visit)  
+#+end_src
+** Reload
+#+begin_src emacs-lisp
+  (defun config-reload ()
+    (interactive)
+    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+  (global-set-key (kbd "C-c r") 'config-reload)
+#+end_src
+* Evil
+** Install
+#+begin_src emacs-lisp
+  (unless (package-installed-p 'evil)
+    (package-install 'evil))
+#+end_src
+** Enable
+#+begin_src emacs-lisp
+  (require 'evil)
+  (evil-mode 1)
+#+end_src
+* Telephone-line
+** Install
+#+begin_src emacs-lisp
+  (unless (package-installed-p 'telephone-line)
+    (package-install 'telephone-line))
+#+end_src
+** enable
+#+begin_src emacs-lisp
+  (require 'telephone-line)
+  (telephone-line-mode 1)
+#+end_src
 
 
 
-
-
-
+  
 
