@@ -1,0 +1,172 @@
+* Emacs
+** Theme
+#+begin_src emacs-lisp
+  (load-theme 'catppuccin :no-confirm)
+  (setq catppuccin-flavor 'mocha) ;; or 'latte, 'mochiatto
+  (catppuccin-reload)
+#+end_src
+
+** Layout
+#+begin_src emacs-lisp
+  ;; Disable tool bar
+  (tool-bar-mode -1)
+
+  ;; Disable menu bar
+  (menu-bar-mode -1)
+
+  ;; Disable scroll bar
+  (scroll-bar-mode -1)
+
+  ;; Disable start up emacs message and go to buffer
+  (setq inhibit-startup-message t)
+
+  ;; Disable backup file
+  (setq make-backup-file nil)
+
+  ;; Disable auto save
+  (setq auto-save-default nil)
+
+  ;; Improve scrolling
+  (setq scroll-conservatively 100)
+
+  ;; Utilize prettify sybmols
+  (when window-system (global-prettify-symbols-mode t))
+
+  ;; Highlight cursor line
+  (when window-system (global-hl-line-mode t))
+
+
+#+end_src
+
+** Prompt
+#+begin_src emacs-lisp
+  ;; Change yes-no prompt to y-or-n
+  (defalias 'yes-or-no-p 'y-or-n-p)
+
+  ;; Disable ring
+  (setq ring-bell-function 'ignore)
+#+end_src
+
+** Visiting the configuration
+#+begin_src emacs-lisp
+  (defun config-visit ()
+    (interactive)
+    (find-file "~/.emacs.d/config.org"))
+  (global-set-key (kbd "C-c e") 'config-visit)
+#+end_src
+** Reloading the configuration
+Simply pressing =Control-c r= will reload this file, very handy.
+#+begin_src emacs-lisp
+  (defun config-reload ()
+    "Reloads ~/.emacs.d/config.org at runtime"
+    (interactive)
+    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+  (global-set-key (kbd "C-c r") 'config-reload)
+#+end_src
+* Terminal
+** Setting default shell to zsh
+#+begin_src emacs-lisp
+  (defvar my-term-shell "/bin/zsh")
+  (defadvice ansi-term (before force-bash)
+    (interactive (list my-term-shell)))
+  (ad-activate 'ansi-term)
+  ;; (global-set-key (kbd "<s-return>)" 'ansi-term)
+#+end_src
+
+* Org
+** Org Bullets
+#+begin_src emacs-lisp
+  (use-package org-bullets
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
+#+end_src
+
+* IDO
+** Enable ido mode
+#+begin_src emacs-lisp
+  (setq ido-enable-flex-matching nil)
+  (setq ido-create-new-buffer 'always)
+  (setq ido-everywhere t)
+  (ido-mode 1)
+#+end_src
+** IDO-Vertical
+#+begin_src emacs-lisp
+  (use-package ido-vertical-mode
+    :ensure t
+    :init
+    (ido-vertical-mode 1))
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+#+end_src
+** SMEX
+#+begin_src emacs-lisp
+  (use-package smex
+    :ensure
+    :init (smex-initialize)
+    :bind
+    ("M-x" . smex))
+#+end_src
+** Switch Buffer
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
+#+end_src
+* Buffer
+** Enable iBuffer
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-x b") 'ibuffer)
+#+end_src
+** Expert
+#+begin_src emacs-lisp
+  (setq ibuffer-expert t)
+#+end_src
+* Avy
+#+begin_src emacs-lisp
+  (use-package avy
+    :ensure
+    :bind
+    ("M-s" . avy-goto-char))
+#+end_src
+* Evil Mode
+** Install
+#+begin_src emacs-lisp
+  (unless (package-installed-p 'evil)
+    (package-install 'evil))
+#+end_src
+** Enable
+#+begin_src emacs-lisp
+  (require 'evil)
+  (evil-mode 1)
+#+End_src
+* Telelphone-line
+** Install
+#+begin_src emacs-lisp
+  (unless (package-installed-p 'telephone-line)
+    (package-install 'telephone-line))
+#+end_src
+** Enable
+#+begin_src emacs-lisp
+  (telephone-line-mode 1)
+#+end_src
+** Config
+#+begin_src emacs-lisp
+  (setq telephone-line-lhs
+      '((evil   . (telephone-line-evil-tag-segment))
+        (accent . (telephone-line-vc-segment
+                   telephone-line-erc-modified-channels-segment
+                   telephone-line-process-segment))
+        (nil    . (telephone-line-minor-mode-segment
+                   telephone-line-buffer-segment))))
+(setq telephone-line-rhs
+      '((nil    . (telephone-line-misc-info-segment))
+        (accent . (telephone-line-major-mode-segment))
+        (evil   . (telephone-line-airline-position-segment))))
+#+end_src
+* Magit
+** Install
+#+begin_src emacs-lisp
+  (unless (package-installed-p 'magit)
+    (package-install 'magit))
+#+end_src
+*#+begin_src emacs-lisp
+#~end_src* #+begin_src emacs-lisp
+#+end_src
