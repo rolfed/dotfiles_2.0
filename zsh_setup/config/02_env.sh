@@ -3,7 +3,7 @@
 #   -------------------------------
 
 # bit && tmux-sessionizer
-export PATH="$PATH:/Users/drolfe/bin"
+export PATH="$HOME/bin:$PATH"
 # bit endexport PATH=$HOME/bin:$PATH
 
 
