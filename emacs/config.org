@@ -47,6 +47,22 @@
   (setq ring-bell-function 'ignore)
 #+end_src
 
+** Visiting the configuration
+#+begin_src emacs-lisp
+  (defun config-visit ()
+    (interactive)
+    (find-file "~/.emacs.d/config.org"))
+  (global-set-key (kbd "C-c e") 'config-visit)
+#+end_src
+** Reloading the configuration
+Simply pressing =Control-c r= will reload this file, very handy.
+#+begin_src emacs-lisp
+  (defun config-reload ()
+    "Reloads ~/.emacs.d/config.org at runtime"
+    (interactive)
+    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+  (global-set-key (kbd "C-c r") 'config-reload)
+#+end_src
 * Terminal
 ** Setting default shell to zsh
 #+begin_src emacs-lisp
@@ -145,4 +161,12 @@
         (accent . (telephone-line-major-mode-segment))
         (evil   . (telephone-line-airline-position-segment))))
 #+end_src
-
+* Magit
+** Install
+#+begin_src emacs-lisp
+  (unless (package-installed-p 'magit)
+    (package-install 'magit))
+#+end_src
+*#+begin_src emacs-lisp
+#~end_src* #+begin_src emacs-lisp
+#+end_src
