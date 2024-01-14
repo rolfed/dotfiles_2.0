@@ -30,8 +30,23 @@
 ;; Follow symbolic link and edit actual file
 (setq vc-follow-symlinks nil)
 
-(org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))k
+;; Load config.org
+(defun load-config-org ()
+  "Load config.org from either ~/.emacs.d/ or ~/.config/emacs/"
+  (interactive)
+  (let ((path1 (expand-file-name "~/.emacs.d/config.org"))
+        (path2 (expand-file-name "~/.config/emacs/config.org")))
 
+        (cond
+          ((file-exists-p path1)
+           (org-babel-load-file path1))
+          ((file-exists-p path2)
+           (org-babel-load-file path2))
+          (t
+            (message "config.org not found in either ~/.emacs.d or ~/.config/emacs"))))
+ ;; Call load-config-org
+ (load-config-org)
+          
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -30,7 +30,8 @@
 ;; Follow symbolic link and edit actual file
 (setq vc-follow-symlinks nil)
 
-(org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))
+;; Load config
+(org-babel-load-file (expand-file-name "~/.config/emacs/config.org"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

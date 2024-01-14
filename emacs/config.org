@@ -34,9 +34,47 @@
 
   ;; Highlight cursor line
   (when window-system (global-hl-line-mode t))
-
-
 #+end_src
+
+** Emacs Frame Transparency Configuration
+  This configuration controls the transparency of the Emacs frame, making it
+  slightly more transparent when it is not in focus, and slightly less transparent
+  when it is the active window. This helps in distinguishing the active Emacs frame
+  when working with multiple windows or applications.
+
+*** Code Description
+   - The function =set-frame-transparency= adjusts the transparency of the Emacs frame.
+   - Transparency levels are set to 95% when the frame is focused, and 70% when it is not.
+   - Hooks are added to =focus-in-hook= and =focus-out-hook= to trigger transparency changes.
+
+*** Dependencies
+   This configuration is dependent on the Emacs version that supports frame parameters
+   and transparency. It has been tested on Emacs 27.1 and later.
+
+*** Usage Instructions
+   1. Place the Lisp code in your Emacs configuration file (usually =.emacs= or =init.el=).
+   2. Restart Emacs, or evaluate the code if Emacs is already running.
+   3. The frame transparency will automatically adjust based on focus changes.
+
+*** Emacs Lisp Code
+   #+BEGIN_SRC emacs-lisp
+     (defun set-frame-transparency (active)
+       "Set the frame transparency. ACTIVE non-nil means frame is focused."
+       (let ((transparency (if active 95 70))) ; Adjust these numbers for desired transparency
+         (set-frame-parameter nil 'alpha transparency)))
+
+     (add-hook 'focus-in-hook (lambda () (set-frame-transparency t)))
+     (add-hook 'focus-out-hook (lambda () (set-frame-transparency nil)))
+
+     ;; Set initial transparency
+     (set-frame-parameter nil 'alpha 95)
+   #+END_SRC
+
+*** Potential Issues and Troubleshooting
+   - If the transparency effects are not visible, check if your operating system
+     and window manager support variable transparency for applications.
+   - Adjust the transparency values in the code if the default levels are not suitable
+     for your preferences or display settings.
 
 ** Prompt
 #+begin_src emacs-lisp
@@ -58,12 +96,22 @@
 Simply pressing =Control-c r= will reload this file, very handy.
 #+begin_src emacs-lisp
   (defun config-reload ()
-    "Reloads ~/.emacs.d/config.org at runtime"
+    "Reloads config.org from either ~/.emacs.d/ or ~/.config/emacs/."
     (interactive)
-    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+    (let ((path1 (expand-file-name "~/.emacs.d/config.org"))
+	  (path2 (expand-file-name "~/.config/emacs/config.org")))
+      (cond
+       ((file-exists-p path1)
+	(org-babel-load-file path1)
+	(message "Reloaded config from: %s" path1))
+       ((file-exists-p path2)
+	(org-babel-load-file path2)
+	(message "Reloaded config from: %s" path2))
+       (t
+	(message "config.org not found in either ~/.emacs.d/ or ~/.config/emacs/")))))
+
   (global-set-key (kbd "C-c r") 'config-reload)
 #+end_src
-* Terminal
 ** Setting default shell to zsh
 #+begin_src emacs-lisp
   (defvar my-term-shell "/bin/zsh")
@@ -131,12 +179,39 @@ Simply pressing =Control-c r= will reload this file, very handy.
 #+begin_src emacs-lisp
   (unless (package-installed-p 'evil)
     (package-install 'evil))
+
+  (use-package evil-leader
+    :ensure t
+    :after evil
+    :init
+    (setq evil-leader/leader ",")
+    :config
+    (global-evil-leader-mode 1)
+    
+    (evil-leader/set-key
+     "w" 'save-buffer
+     "t" (lambda ()
+         (interactive)
+         (ansi-term "zsh"))
+     "e" 'ido-switch-buffer
+    ))
 #+end_src
 ** Enable
 #+begin_src emacs-lisp
   (require 'evil)
   (evil-mode 1)
 #+End_src
+
+Split window configuratio
+#+begin_src emacs-lisp
+  (define-key evil-normal-state-map (kbd "C-w v") 'split-window-right)
+  (define-key evil-normal-state-map (kbd "C-w s") 'split-window-below)
+  (define-key evil-normal-state-map (kbd "C-w c") 'delete-window)
+
+  ;; Focus moves to new window after split
+  (setq evil-split-window-below t)
+  (setq evil-split-window-right t)
+#+end_src
 * Telelphone-line
 ** Install
 #+begin_src emacs-lisp
@@ -149,24 +224,21 @@ Simply pressing =Control-c r= will reload this file, very handy.
 #+end_src
 ** Config
 #+begin_src emacs-lisp
-  (setq telephone-line-lhs
-      '((evil   . (telephone-line-evil-tag-segment))
-        (accent . (telephone-line-vc-segment
-                   telephone-line-erc-modified-channels-segment
-                   telephone-line-process-segment))
-        (nil    . (telephone-line-minor-mode-segment
-                   telephone-line-buffer-segment))))
-(setq telephone-line-rhs
-      '((nil    . (telephone-line-misc-info-segment))
-        (accent . (telephone-line-major-mode-segment))
-        (evil   . (telephone-line-airline-position-segment))))
+    (setq telephone-line-lhs
+	'((evil   . (telephone-line-evil-tag-segment))
+	  (accent . (telephone-line-vc-segment
+		     telephone-line-erc-modified-channels-segment
+		     telephone-line-process-segment))
+	  (nil    . (telephone-line-minor-mode-segment
+		     telephone-line-buffer-segment))))
+  (setq telephone-line-rhs
+	'((nil    . (telephone-line-misc-info-segment))
+	  (accent . (telephone-line-major-mode-segment))
+	  (evil   . (telephone-line-airline-position-segment))))
 #+end_src
 * Magit
 ** Install
 #+begin_src emacs-lisp
   (unless (package-installed-p 'magit)
     (package-install 'magit))
-#+end_src
-*#+begin_src emacs-lisp
-#~end_src* #+begin_src emacs-lisp
 #+end_src

@@ -8,5 +8,5 @@ export PATH="$HOME/bin:$PATH"
 
 
 # Addint emacs to the existing path
-export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 
