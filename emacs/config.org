@@ -21,7 +21,7 @@
   (setq inhibit-startup-message t)
 
   ;; Disable backup file
-  (setq make-backup-file nil)
+  (setq make-backup-files nil)
 
   ;; Disable auto save
   (setq auto-save-default nil)
@@ -36,7 +36,7 @@
   (when window-system (global-hl-line-mode t))
 
   ;; Relative line numbers
-  (setq display-line-number-mode t)
+  (display-line-numbers-mode t)
 #+end_src
 
 ** Emacs Frame Transparency Configuration
@@ -126,14 +126,21 @@ Simply pressing =Control-c r= will reload this file, very handy.
 * Org Mode
 ** Config
 #+begin_src emacs-lisp
-  (setq org-indent-mode t)
+  (org-indent-mode t)
 #+end_src
-** Org Bullets
-#+begin_src emacs-lisp
-(use-package org-bullets
-:ensure t
-:config
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
+** Org Roam
+#+begin_src emacs-lisp 
+  (use-package org-roam
+    :ensure t
+    :custom
+    (org-roam-directory "~/repos/Brain/"
+    :bind (("C-c n l" . org-roam-buffer-toggle)
+           ("C-c n i" . org-roam-node-insert) ;; creates node if it does not exist, and inserts a link to the node point
+           ("C-c n f" . org-roam-node-find) ;; create a node if it does not exist, and visits the node
+           ("C-c n g" . org-roam-graph)
+           ("C-c n j" . org-roam-dailies-capture-today))
+    :config
+    (org-roam-db-autosync-mode 1)))
 #+end_src
 ** Org Modern Mode
 *** Install
@@ -162,7 +169,7 @@ Simply pressing =Control-c r= will reload this file, very handy.
   org-tags-column 0
   org-catch-invisible-edits 'show-and-error
   org-special-ctrl-a/e t
-  org-insert-heading-respect-content 
+  org-insert-heading-respect-content t
 
   ;; Org styling, hide markup etc.
   org-hide-emphasis-markers t
@@ -181,7 +188,7 @@ Simply pressing =Control-c r= will reload this file, very handy.
   "◀── now ─────────────────────────────────────────────────")
 
   (custom-set-faces
-  '(org-block ((t (:background "#393c4d")))))
+  '(org-block ((t (:background "#302f38")))))
 
   (global-org-modern-mode)
 #+end_src
@@ -282,17 +289,17 @@ Split window configuratio
 #+end_src
 ** Config
 #+begin_src emacs-lisp
-(setq telephone-line-lhs
-    '((evil   . (telephone-line-evil-tag-segment))
-	(accent . (telephone-line-vc-segment
-		    telephone-line-erc-modified-channels-segment
-		    telephone-line-process-segment))
-	(nil    . (telephone-line-minor-mode-segment
-		    telephone-line-buffer-segment))))
-(setq telephone-line-rhs
-    '((nil    . (telephone-line-misc-info-segment))
-	(accent . (telephone-line-major-mode-segment))
-	(evil   . (telephone-line-airline-position-segment))))
+  (setq telephone-line-lhs
+      '((evil   . (telephone-line-evil-tag-segment))
+	  (accent . (telephone-line-vc-segment
+		      telephone-line-erc-modified-channels-segment
+		      telephone-line-process-segment))
+	  (nil    . (telephone-line-minor-mode-segment
+		      telephone-line-buffer-segment))))
+  (setq telephone-line-rhs
+      '((nil    . (telephone-line-misc-info-segment))
+	  (accent . (telephone-line-major-mode-segment))
+	  (evil   . (telephone-line-airline-position-segment))))
 #+end_src
 * Magit
 ** Install
@@ -300,44 +307,16 @@ Split window configuratio
 (unless (package-installed-p 'magit)
 (package-install 'magit))
 #+end_src
-
-* Company
-Company is a modular text completion framework fro GNU Emacs.
-#+begin_src emacs-lisp
-
-
-#+end_src
-Company is a text completion framework for Emacs.
-#+begin_src emacs-lisp
-(unless (package-installed-p 'company)
-(package-install 'company)
-(add-hook 'after-init-hook 'global-company-mode))
-#+end_src
-
+* Ivy
 * Treemacs
 Tree layout file explorer for emacs
 #+begin_src emacs-lisp
-(use-package treemacs
-:ensure t)
+  (use-package treemacs
+  :ensure t
+  :defer t)
 
-(use-package treemacs-evil
-:ensure t)
+  (use-package treemacs-evil
+  :ensure t)
 #+end_src
 
-
-* Org Roam
-** Install
-#+begin_src emacs-lisp 
-(use-package org-roam
-:ensure t
-:init
-(setq org-roam-v2-ack t)
-:custom
-(org-roam-directory "~/repos/Brain")
-:bind (("C-c n l" . org-roam-buffer-toggle)
-	("C-c n f" . org-roam-node-find)
-	("C-c n i" . org-roam-node-insert))
-:config
-(org-roam-setup))
-#+end_src
 
