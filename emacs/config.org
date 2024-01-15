@@ -2,7 +2,7 @@
 ** Theme
 #+begin_src emacs-lisp
   (load-theme 'catppuccin :no-confirm)
-  (setq catppuccin-flavor 'mocha) ;; or 'latte, 'mochiatto
+  (setq catppuccin-flavor 'frappe) ;; or 'latte, 'mochiatto
   (catppuccin-reload)
 #+end_src
 
@@ -121,157 +121,223 @@ Simply pressing =Control-c r= will reload this file, very handy.
   (defadvice ansi-term (before force-bash)
     (interactive (list my-term-shell)))
   (ad-activate 'ansi-term)
-  ;; (global-set-key (kbd "<s-return>)" 'ansi-term)
 #+end_src
 
-* Org
+* Org Mode
+** Config
+#+begin_src emacs-lisp
+  (setq org-indent-mode t)
+#+end_src
 ** Org Bullets
 #+begin_src emacs-lisp
-  (use-package org-bullets
-    :ensure t
-    :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
+(use-package org-bullets
+:ensure t
+:config
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
+#+end_src
+** Org Modern Mode
+*** Install
+#+begin_src emacs-lisp
+(use-package org-modern 
+:ensure t)
+#+end_src
+*** Config
+#+begin_src emacs-lisp
+  ;; Add frame borders and window dividers
+  (modify-all-frames-parameters
+  '((right-divider-width . 40)
+      (internal-border-width . 40)))
+  (dolist (face '(window-divider
+		  window-divider-first-pixel
+		  window-divider-last-pixel))
+  (face-spec-reset-face face)
+  (set-face-foreground face (face-attribute 'default :background)))
+  (set-face-background 'fringe (face-attribute 'default :background))
+
+  (add-hook 'org-mode-hook 'org-indent-mode)
+
+  (setq
+  ;; Edit settings
+  org-auto-align-tags nil
+  org-tags-column 0
+  org-catch-invisible-edits 'show-and-error
+  org-special-ctrl-a/e t
+  org-insert-heading-respect-content 
+
+  ;; Org styling, hide markup etc.
+  org-hide-emphasis-markers t
+  org-pretty-entities t
+  org-ellipsis "…"
+  org-indent-indentation-per-level 4
+
+  ;; Agenda styling
+  org-agenda-tags-column 0
+  org-agenda-block-separator ?─
+  org-agenda-time-grid
+  '((daily today require-timed)
+      (800 1000 1200 1400 1600 1800 2000)
+      " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+  org-agenda-current-time-string
+  "◀── now ─────────────────────────────────────────────────")
+
+  (custom-set-faces
+  '(org-block ((t (:background "#393c4d")))))
+
+  (global-org-modern-mode)
 #+end_src
 
 * IDO
 ** Enable ido mode
 #+begin_src emacs-lisp
-  (setq ido-enable-flex-matching nil)
-  (setq ido-create-new-buffer 'always)
-  (setq ido-everywhere t)
-  (ido-mode 1)
+(setq ido-enable-flex-matching nil)
+(setq ido-create-new-buffer 'always)
+(setq ido-everywhere t)
+(ido-mode 1)
 #+end_src
 ** IDO-Vertical
 #+begin_src emacs-lisp
-  (use-package ido-vertical-mode
-    :ensure t
-    :init
-    (ido-vertical-mode 1))
-  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+(use-package ido-vertical-mode
+:ensure t
+:init
+(ido-vertical-mode 1))
+(setq ido-vertical-define-keys 'C-n-and-C-p-only)
 #+end_src
 ** SMEX
 #+begin_src emacs-lisp
-  (use-package smex
-    :ensure
-    :init (smex-initialize)
-    :bind
-    ("M-x" . smex))
+(use-package smex
+:ensure
+:init (smex-initialize)
+:bind
+("M-x" . smex))
 #+end_src
 ** Switch Buffer
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
+(global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
 #+end_src
 * Buffer
 ** Enable iBuffer
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-x b") 'ibuffer)
+(global-set-key (kbd "C-x b") 'ibuffer)
 #+end_src
 ** Expert
 #+begin_src emacs-lisp
-  (setq ibuffer-expert t)
+(setq ibuffer-expert t)
 #+end_src
 * Avy
 #+begin_src emacs-lisp
-  (use-package avy
-    :ensure
-    :bind
-    ("M-s" . avy-goto-char))
+(use-package avy
+:ensure
+:bind
+("M-s" . avy-goto-char))
 #+end_src
 * Evil Mode
 ** Install
 #+begin_src emacs-lisp
-  (unless (package-installed-p 'evil)
-    (package-install 'evil))
-  
-  (use-package evil-leader
-    :ensure t
-    :after evil
-    :init
-    (setq evil-leader/leader ",")
-    :config
-    (global-evil-leader-mode 1)
+(unless (package-installed-p 'evil)
+(package-install 'evil))
 
-    (evil-leader/set-key
-     "w" 'save-buffer
-     "t" (lambda ()
-	 (interactive)
-	 (ansi-term "zsh"))
-     "e" 'ido-switch-buffer
-     "TAB TAB" 'comment-line 
-     "p v" 'treemacs
+(use-package evil-leader
+:ensure t
+:after evil
+:init
+(setq evil-leader/leader ",")
+:config
+(global-evil-leader-mode 1)
+
+(evil-leader/set-key
+    "w" 'save-buffer
+    "t" (lambda ()
+	(interactive)
+	(ansi-term "zsh"))
+    "e" 'ido-switch-buffer
+    "TAB TAB" 'comment-line 
+    "p v" 'treemacs
     ))
 #+end_src
 ** Enable
 #+begin_src emacs-lisp
-  (require 'evil)
-  (evil-mode 1)
+(require 'evil)
+(evil-mode 1)
 #+End_src
 
 Split window configuratio
 #+begin_src emacs-lisp
-  (define-key evil-normal-state-map (kbd "C-w v") 'split-window-right)
-  (define-key evil-normal-state-map (kbd "C-w s") 'split-window-below)
-  (define-key evil-normal-state-map (kbd "C-w c") 'delete-window)
+(define-key evil-normal-state-map (kbd "C-w v") 'split-window-right)
+(define-key evil-normal-state-map (kbd "C-w s") 'split-window-below)
+(define-key evil-normal-state-map (kbd "C-w c") 'delete-window)
 
-  ;; Focus moves to new window after split
-  (setq evil-split-window-below t)
-  (setq evil-split-window-right t)
+;; Focus moves to new window after split
+(setq evil-split-window-below t)
+(setq evil-split-window-right t)
 #+end_src
 * Telelphone-line
 ** Install
 #+begin_src emacs-lisp
-  (unless (package-installed-p 'telephone-line)
-    (package-install 'telephone-line))
+(unless (package-installed-p 'telephone-line)
+(package-install 'telephone-line))
 #+end_src
 ** Enable
 #+begin_src emacs-lisp
-  (telephone-line-mode 1)
+(telephone-line-mode 1)
 #+end_src
 ** Config
 #+begin_src emacs-lisp
-    (setq telephone-line-lhs
-	'((evil   . (telephone-line-evil-tag-segment))
-	  (accent . (telephone-line-vc-segment
-		     telephone-line-erc-modified-channels-segment
-		     telephone-line-process-segment))
-	  (nil    . (telephone-line-minor-mode-segment
-		     telephone-line-buffer-segment))))
-  (setq telephone-line-rhs
-	'((nil    . (telephone-line-misc-info-segment))
-	  (accent . (telephone-line-major-mode-segment))
-	  (evil   . (telephone-line-airline-position-segment))))
+(setq telephone-line-lhs
+    '((evil   . (telephone-line-evil-tag-segment))
+	(accent . (telephone-line-vc-segment
+		    telephone-line-erc-modified-channels-segment
+		    telephone-line-process-segment))
+	(nil    . (telephone-line-minor-mode-segment
+		    telephone-line-buffer-segment))))
+(setq telephone-line-rhs
+    '((nil    . (telephone-line-misc-info-segment))
+	(accent . (telephone-line-major-mode-segment))
+	(evil   . (telephone-line-airline-position-segment))))
 #+end_src
 * Magit
 ** Install
 #+begin_src emacs-lisp
-  (unless (package-installed-p 'magit)
-    (package-install 'magit))
+(unless (package-installed-p 'magit)
+(package-install 'magit))
 #+end_src
 
 * Company
 Company is a modular text completion framework fro GNU Emacs.
 #+begin_src emacs-lisp
-  
+
 
 #+end_src
 Company is a text completion framework for Emacs.
 #+begin_src emacs-lisp
-  (unless (package-installed-p 'company)
-    (package-install 'company)
-    (add-hook 'after-init-hook 'global-company-mode))
-#+end_src
-
-* Dashboard
-#+begin_src emacs-lisp
-
+(unless (package-installed-p 'company)
+(package-install 'company)
+(add-hook 'after-init-hook 'global-company-mode))
 #+end_src
 
 * Treemacs
 Tree layout file explorer for emacs
 #+begin_src emacs-lisp
-  (use-package treemacs
-    :ensure t)
+(use-package treemacs
+:ensure t)
 
-  (use-package treemacs-evil
-    :ensure t)
+(use-package treemacs-evil
+:ensure t)
 #+end_src
+
+
+* Org Roam
+** Install
+#+begin_src emacs-lisp 
+(use-package org-roam
+:ensure t
+:init
+(setq org-roam-v2-ack t)
+:custom
+(org-roam-directory "~/repos/Brain")
+:bind (("C-c n l" . org-roam-buffer-toggle)
+	("C-c n f" . org-roam-node-find)
+	("C-c n i" . org-roam-node-insert))
+:config
+(org-roam-setup))
+#+end_src
+
