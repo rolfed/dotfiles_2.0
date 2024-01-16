@@ -133,14 +133,14 @@ Simply pressing =Control-c r= will reload this file, very handy.
   (use-package org-roam
     :ensure t
     :custom
-    (org-roam-directory "~/repos/Brain/"
+    (org-roam-directory "~/repos/Brain/")
     :bind (("C-c n l" . org-roam-buffer-toggle)
            ("C-c n i" . org-roam-node-insert) ;; creates node if it does not exist, and inserts a link to the node point
            ("C-c n f" . org-roam-node-find) ;; create a node if it does not exist, and visits the node
            ("C-c n g" . org-roam-graph)
            ("C-c n j" . org-roam-dailies-capture-today))
     :config
-    (org-roam-db-autosync-mode 1)))
+    (org-roam-db-autosync-mode 1))
 #+end_src
 ** Org Modern Mode
 *** Install
