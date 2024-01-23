@@ -30,6 +30,7 @@ ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in Ma
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 alias mux='tmuxinator'                      # Tmuxinator alias
 alias npml="npm ls -g --depth=0 --link=true" # List all symbolic links for npm packages
+alias cb="git rev-parse --abbrev-ref HEAD" # cb:            Get current branch name
 
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
