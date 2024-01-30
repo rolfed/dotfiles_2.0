@@ -123,7 +123,7 @@ Simply pressing =Control-c r= will reload this file, very handy.
     :init
     (setq org-roam-v2-ack t)
     :custom
-    (org-roam-directory  "~/repos/brain")
+    (org-roam-directory  "~/repos/Brain")
     (org-roam-completetion-everywhere t)
     :bind (("C-c n l" . org-roam-buffer-toggle)
            ("C-c n i" . org-roam-node-insert) ;; creates node if it does not exist, and inserts a link to the node point
