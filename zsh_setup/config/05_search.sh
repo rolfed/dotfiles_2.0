@@ -10,3 +10,10 @@ ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name end
 #   spotlight: Search for a file using MacOS Spotlight's metadata
 #   -----------------------------------------------------------
     spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }
+
+# Git checkout integration with fzf
+#
+gch () {
+    git checkout "$(git branch - all | fzf | tr -d '[:space:]')"
+}
+

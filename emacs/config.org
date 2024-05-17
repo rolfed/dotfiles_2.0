@@ -510,7 +510,7 @@ Simply pressing =Control-c r= will reload this file, very handy.
 ** Switch Buffer
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
-#+end_src
+#+end_sr
 * Buffer
 ** Enable iBuffer
 #+begin_src emacs-lisp
