@@ -32,6 +32,7 @@ alias mux='tmuxinator'                      # Tmuxinator alias
 alias npml="npm ls -g --depth=0 --link=true" # List all symbolic links for npm packages
 alias cb="git rev-parse --abbrev-ref HEAD" # cb:            Get current branch name
 alias gcb="git branch --merged | egrep -v '(^\*|main|master)' | xargs git branch -d"
+alias cat="bat"                             # Use bat instead of cat 
 
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------

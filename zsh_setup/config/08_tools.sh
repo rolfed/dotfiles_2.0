@@ -42,3 +42,4 @@ ctags=/usr/local/bin/ctags
 export DOTNET_ROOT='/usr/local/opt/dotnet/libexec'
 # Add .NET Core SDK tools
 export PATH="$PATH:/Users/dannielrolfe/.dotnet/tools"
+

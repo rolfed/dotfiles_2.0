@@ -115,9 +115,11 @@ fi
 MY_ZSH_SETUP=$HOME/.my_zsh_setup.sh
 [[ -f $MY_ZSH_SETUP ]] && source $MY_ZSH_SETUP || echo "$MY_ZSH_SETUP file does not exist"
 
+source ~/fzf-git.sh/fzf-git.sh
+
 # Powerlevel 9k Customization
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs vcs vi_mode)
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs vcs vi_mode)
 
 # Plugins
 plugins=(
